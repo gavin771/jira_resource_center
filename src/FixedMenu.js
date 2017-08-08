@@ -1,40 +1,34 @@
 import React from 'react'
-import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
-import logo from './logo.svg';
+import { Container, Image, Menu } from 'semantic-ui-react'
+import { Route, Link } from 'react-router-dom'
+import logo from './logo.svg'
 
 const FixedMenu = () =>
-    <Menu fixed='top' inverted>
-        <Container>
-            <Menu.Item header>
-                <Image
-                    size='tiny'
-                    src={logo}
-                    style={{ marginRight: '1.5em' }}
-                    className="App-logo"
-                />
-                JIRA Resource Centre
-        </Menu.Item>
-            <Menu.Item as='a'>Home</Menu.Item>
+  <Menu fixed='top' inverted>
+    <Container>
+      <Menu.Item header>
+        <Image
+          size='tiny'
+          src={logo}
+          style={{ marginRight: '1.5em' }}
+          className='App-logo'
+        />
+        JIRA Resource Centre
+      </Menu.Item>
+      <Menu.Item>
+        <Link to='/'>Home</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to='/projects'>Projects</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to='/tasks'>Open Tasks</Link>
+      </Menu.Item>
+    </Container>
 
-            <Dropdown item simple text='Dropdown'>
-                <Dropdown.Menu>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Header>Header Item</Dropdown.Header>
-                    <Dropdown.Item>
-                        <i className='dropdown icon' />
-                        <span className='text'>Submenu</span>
-                        <Dropdown.Menu>
-                            <Dropdown.Item>List Item</Dropdown.Item>
-                            <Dropdown.Item>List Item</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </Container>
-    </Menu>
-
+    <Route exact path='/' render={() => <h1>Home View</h1>} />
+    <Route exact path='/projects' render={() => <h1>Project View</h1>} />
+    <Route exact path='/tasks' render={() => <h1>Tasks View</h1>} />
+  </Menu>
 
 export default FixedMenu
