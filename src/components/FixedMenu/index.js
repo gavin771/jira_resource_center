@@ -1,7 +1,13 @@
 import React from 'react'
 import { Container, Image, Menu } from 'semantic-ui-react'
-import { Route, Link } from 'react-router-dom'
+import MenuItem from '../MenuItem'
 import logo from '../../logo.svg'
+
+const links = [
+  { isExact: true, linkTo: '/', text: 'Home' },
+  { isExact: true, linkTo: '/projects', text: 'Projects' },
+  { isExact: true, linkTo: '/tasks', text: 'Open Tasks' }
+]
 
 const FixedMenu = () =>
   <Menu fixed='top' inverted>
@@ -15,20 +21,17 @@ const FixedMenu = () =>
         />
         JIRA Resource Centre
       </Menu.Item>
-      <Menu.Item>
-        <Link to='/'>Home</Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to='/projects'>Projects</Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link to='/tasks'>Open Tasks</Link>
-      </Menu.Item>
+      {links.map((link, i) => {
+        return (
+          <MenuItem
+            isExact={link.isExact}
+            linkTo={link.linkTo}
+            text={link.text}
+            key={i}
+          />
+        )
+      })}
     </Container>
-
-    <Route exact path='/' render={() => <h1>Home View</h1>} />
-    <Route exact path='/projects' render={() => <h1>Project View</h1>} />
-    <Route exact path='/tasks' render={() => <h1>Tasks View</h1>} />
   </Menu>
 
 export default FixedMenu

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Header, Grid, Image } from 'semantic-ui-react'
-import { BrowserRouter } from 'react-router-dom'
-import paragraph from '../../paragraph.png'
+import { Container } from 'semantic-ui-react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from '../Home'
+import Projects from '../Projects'
+import Tasks from '../Tasks'
+import NotFound from '../NotFound'
 import './App.css'
 import FixedMenu from '../FixedMenu'
 import FixedFooter from '../FixedFooter'
@@ -12,23 +15,14 @@ class App extends Component {
       <BrowserRouter>
         <div className='App'>
           <FixedMenu />
+
           <Container className='App-content' style={{ marginTop: '9em' }}>
-            <Header as='h1' dividing>
-              Control Centre
-            </Header>
-            <Grid columns={3}>
-              <Grid.Row>
-                <Grid.Column>
-                  <Image src={paragraph} />
-                </Grid.Column>
-                <Grid.Column>
-                  <Image src={paragraph} />
-                </Grid.Column>
-                <Grid.Column>
-                  <Image src={paragraph} />
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/projects' component={Projects} />
+              <Route exact path='/tasks' component={Tasks} />
+              <Route component={NotFound} />
+            </Switch>
           </Container>
           <FixedFooter />
         </div>
