@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Image, Menu } from 'semantic-ui-react'
 import { Route, Link } from 'react-router-dom'
-import logo from './logo.svg'
+import logo from '../../logo.svg'
 
 const FixedMenu = () =>
   <Menu fixed='top' inverted>

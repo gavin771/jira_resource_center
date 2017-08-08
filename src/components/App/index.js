@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Container, Header, Grid, Image } from 'semantic-ui-react'
 import { BrowserRouter } from 'react-router-dom'
-import paragraph from './paragraph.png'
+import paragraph from '../../paragraph.png'
 import './App.css'
-import FixedMenu from './FixedMenu.js'
-import FixedFooter from './FixedFooter.js'
+import FixedMenu from '../FixedMenu'
+import FixedFooter from '../FixedFooter'
 
 class App extends Component {
   render () {

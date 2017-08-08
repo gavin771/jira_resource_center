@@ -8,7 +8,7 @@ import {
   List,
   Segment
 } from 'semantic-ui-react'
-import logo from './logo.svg'
+import logo from '../../logo.svg'
 
 const FixedFooter = () =>
   <Segment
