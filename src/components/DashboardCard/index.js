@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Image, Divider } from 'semantic-ui-react'
+import { Card, Image, Divider, Button } from 'semantic-ui-react'
 
 class DashboardCard extends Component {
   render () {
@@ -15,6 +15,17 @@ class DashboardCard extends Component {
             {this.props.details}
           </Card.Description>
         </Card.Content>
+        {this.props.displayExtra &&
+          <Card.Content extra>
+            <div className='ui two buttons'>
+              <Button basic color='green'>
+                View
+              </Button>
+              <Button basic color='blue'>
+                Download
+              </Button>
+            </div>
+          </Card.Content>}
       </Card>
     )
   }
