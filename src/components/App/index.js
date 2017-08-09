@@ -5,6 +5,7 @@ import Home from '../Home'
 import Projects from '../Projects'
 import Tasks from '../Tasks'
 import Flyers from '../Flyers'
+import LetterTemplates from '../LetterTemplates'
 import NotFound from '../NotFound'
 import './App.css'
 import FixedMenu from '../FixedMenu'
@@ -23,6 +24,11 @@ class App extends Component {
               <Route exact path='/projects' component={Projects} />
               <Route exact path='/tasks' component={Tasks} />
               <Route exact path='/flyers' component={Flyers} />
+              <Route
+                exact
+                path='/letter-templates'
+                component={LetterTemplates}
+              />
               <Route component={NotFound} />
             </Switch>
           </Container>
