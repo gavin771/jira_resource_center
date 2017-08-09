@@ -52,11 +52,11 @@ class Flyers extends Component {
           {flyers.map((f, i) => {
             return (
               <DashboardCard
-                link={f.link}
                 header={f.header}
                 image={f.image}
                 details={f.details}
                 key={i}
+                displayExtra
               />
             )
           })}
