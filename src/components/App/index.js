@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from '../Home'
 import Projects from '../Projects'
 import Tasks from '../Tasks'
+import Flyers from '../Flyers'
 import NotFound from '../NotFound'
 import './App.css'
 import FixedMenu from '../FixedMenu'
@@ -21,6 +22,7 @@ class App extends Component {
               <Route exact path='/' component={Home} />
               <Route exact path='/projects' component={Projects} />
               <Route exact path='/tasks' component={Tasks} />
+              <Route exact path='/flyers' component={Flyers} />
               <Route component={NotFound} />
             </Switch>
           </Container>

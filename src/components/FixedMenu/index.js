@@ -6,7 +6,8 @@ import logo from '../../logo.svg'
 const links = [
   { isExact: true, linkTo: '/', text: 'Home' },
   { isExact: true, linkTo: '/projects', text: 'Projects' },
-  { isExact: true, linkTo: '/tasks', text: 'Open Tasks' }
+  { isExact: true, linkTo: '/tasks', text: 'Open Tasks' },
+  { isExact: true, linkTo: '/flyers', text: 'Flyers' }
 ]
 
 const FixedMenu = () =>
