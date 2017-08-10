@@ -1,8 +1,8 @@
 {
-  "name": "jira-resource-center",
+  "name": "qw-resource-center",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gavin771.github.io/jira_resource_center/",
+  "homepage": "https://gavin771.github.io/qw_resource_center/",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "react": "^15.6.1",

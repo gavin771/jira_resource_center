@@ -21,7 +21,7 @@ const FixedMenu = () =>
           style={{ marginRight: '1.5em' }}
           className='App-logo'
         />
-        JIRA Resource Centre
+        QW Resource Centre
       </Menu.Item>
       {links.map((link, i) => {
         return (
