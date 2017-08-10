@@ -6,6 +6,7 @@ import Projects from '../Projects'
 import Tasks from '../Tasks'
 import Flyers from '../Flyers'
 import LetterTemplates from '../LetterTemplates'
+import Request from '../Request'
 import NotFound from '../NotFound'
 import './App.css'
 import FixedMenu from '../FixedMenu'
@@ -29,6 +30,7 @@ class App extends Component {
                 path='/letter-templates'
                 component={LetterTemplates}
               />
+              <Route exact path='/submit-request' component={Request} />
               <Route component={NotFound} />
             </Switch>
           </Container>
