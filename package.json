@@ -4,13 +4,13 @@
   "private": true,
   "homepage": "https://gavin771.github.io/qw_resource_center/",
   "dependencies": {
-    "gh-pages": "^1.0.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-router-dom": "^4.1.2",
+    "gh-pages": "~1.0.0",
+    "react": "~15.6.1",
+    "react-dom": "~15.6.1",
+    "react-router-dom": "~4.1.2",
     "react-scripts": "1.0.10",
-    "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.71.3"
+    "semantic-ui-css": "~2.2.12",
+    "semantic-ui-react": "~0.71.3"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -22,11 +22,15 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.0.3",
-    "prettier": "^1.5.3",
-    "standard": "^10.0.3"
+    "babel-eslint": "~7.2.3",
+    "enzyme": "~2.9.1",
+    "husky": "~0.14.3",
+    "lint-staged": "~4.0.3",
+    "prettier": "~1.5.3",
+    "react-addons-test-utils": "^15.6.0",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
+    "standard": "~10.0.3"
   },
   "lint-staged": {
     "*.js": [
