@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Container } from 'semantic-ui-react'
 import App from './'
 
 describe('<App />', () => {
@@ -11,10 +10,6 @@ describe('<App />', () => {
   })
 
   it('should have a div with className="App"', () => {
-    expect(
-      wrapper.contains(
-        <Container className='App-content' style={{ marginTop: '9em' }} />
-      )
-    ).toBe(true)
+    expect(wrapper.find('.App').length).toBe(1)
   })
 })
