@@ -6,6 +6,7 @@ import Projects from '../Projects'
 import Tasks from '../Tasks'
 import Flyers from '../Flyers'
 import LetterTemplates from '../LetterTemplates'
+import Story from '../Story'
 import Request from '../Request'
 import NotFound from '../NotFound'
 import './App.css'
@@ -30,6 +31,7 @@ class App extends Component {
                 path='/letter-templates'
                 component={LetterTemplates}
               />
+              <Route exact path='/share-story' component={Story} />
               <Route exact path='/submit-request' component={Request} />
               <Route component={NotFound} />
             </Switch>

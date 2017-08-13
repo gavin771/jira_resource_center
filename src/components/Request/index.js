@@ -1,8 +1,51 @@
 import React, { Component } from 'react'
 import { Header, Segment, Form } from 'semantic-ui-react'
+import DatePicker from 'react-datepicker'
+import '../../../node_modules/react-datepicker/dist/react-datepicker.css'
+
+const options = [
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' }
+]
 
 class Request extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: '',
+      file: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFileInputClick = this.handleFileInputClick.bind(this)
+  }
+
+  handleChange (date) {
+    this.setState({
+      startDate: date
+    })
+  }
+
+  handleFileInputClick () {
+    // console.log(this.fileUpload)
+    this.fileUpload.click()
+  }
+
+  handleFilePath = () => {
+    let file = document.getElementById('upload').files
+    if (file.length === 0) {
+      this.setState({
+        file: null
+      })
+    } else {
+      this.setState({
+        file: file[0].name
+      })
+    }
+  }
+
   render () {
+    const { value } = this.state
+    let fileValue = this.state.file || 'Select a file to upload'
     return (
       <div>
         <Header as='h1' dividing>
@@ -26,16 +69,79 @@ class Request extends Component {
             ultricies nisi.
           </p>
         </Segment>
+
         <Form>
-          <Form.Group>
-            <Form.Input label='First Name' placeholder='First Name' width={8} />
-            <Form.Input label='Last Name' placeholder='Last Name' width={8} />
+          <Form.Group widths='equal'>
+            <Form.Input label='First name' placeholder='First name' />
+            <Form.Input label='Last name' placeholder='Last name' />
+            <Form.Select
+              label='Gender'
+              options={options}
+              placeholder='Gender'
+            />
           </Form.Group>
+
+          <Form.Group widths='3'>
+            <Form.Group grouped>
+              <label>Size</label>
+              <Form.Radio
+                label='Small'
+                value='sm'
+                checked={value === 'sm'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Medium'
+                value='md'
+                checked={value === 'md'}
+                onChange={this.handleChange}
+              />
+              <Form.Radio
+                label='Large'
+                value='lg'
+                checked={value === 'lg'}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Field
+              label='Date'
+              control={DatePicker}
+              dateFormat='Do MMM YYYY'
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+              placeholderText='Click to select a date'
+              showYearDropdown
+              dateFormatCalendar='MMMM'
+              scrollableYearDropdown
+              yearDropdownItemNumber={15}
+            />
+            <Form.Field>
+              <label>Related Files</label>
+              <input
+                type='text'
+                readOnly
+                value={fileValue}
+                onClick={this.handleFileInputClick}
+              />
+              <Form.Field>
+                <input
+                  id='upload'
+                  type='file'
+                  style={{ display: 'none' }}
+                  ref={input => {
+                    this.fileUpload = input
+                  }}
+                  onChange={this.handleFilePath}
+                />
+              </Form.Field>
+            </Form.Field>
+          </Form.Group>
+
           <Form.TextArea
-            label='Your Request'
-            placeholder='Detail your request here'
-            width={16}
+            label='About'
+            placeholder='Tell us more about you...'
           />
+          <Form.Checkbox label='I agree to the Terms and Conditions' />
           <Form.Button>Submit</Form.Button>
         </Form>
       </div>
