@@ -10,7 +10,8 @@ const links = [
   { isExact: true, linkTo: '/flyers', text: 'Flyers' },
   { isExact: true, linkTo: '/letter-templates', text: 'Letter Templates' },
   { isExact: true, linkTo: '/share-story', text: 'Story' },
-  { isExact: true, linkTo: '/submit-request', text: 'Request' }
+  { isExact: true, linkTo: '/submit-request', text: 'Request' },
+  { isExact: true, linkTo: '/tutorial', text: 'Tutorial' }
 ]
 
 const FixedMenu = () =>

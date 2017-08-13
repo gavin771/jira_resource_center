@@ -8,6 +8,7 @@ import Flyers from '../Flyers'
 import LetterTemplates from '../LetterTemplates'
 import Story from '../Story'
 import Request from '../Request'
+import Tutorial from '../Tutorial'
 import NotFound from '../NotFound'
 import './App.css'
 import FixedMenu from '../FixedMenu'
@@ -33,6 +34,7 @@ class App extends Component {
               />
               <Route exact path='/share-story' component={Story} />
               <Route exact path='/submit-request' component={Request} />
+              <Route exact path='/tutorial' component={Tutorial} />
               <Route component={NotFound} />
             </Switch>
           </Container>
