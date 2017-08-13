@@ -12,14 +12,20 @@ class Request extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      startDate: '',
-      file: ''
+      file: '',
+      firstName: '',
+      lastName: '',
+      gender: '',
+      size: '',
+      date: '',
+      desc: '',
+      accept: false
     }
   }
 
-  handleChange = date => {
+  handleDateChange = date => {
     this.setState({
-      startDate: date
+      date: date
     })
   }
 
@@ -29,6 +35,7 @@ class Request extends Component {
 
   handleFilePath = () => {
     let file = document.getElementById('upload').files
+    console.log(file)
     if (file.length === 0) {
       this.setState({
         file: null
@@ -40,8 +47,25 @@ class Request extends Component {
     }
   }
 
+  handleInputChange = (e, data) => {
+    let value
+    let name = data.name
+    console.log(data)
+
+    if (data.type === 'checkbox') {
+      value = data.checked
+    } else if (data.type === 'text' || data.type === undefined) {
+      value = data.value
+    } else if (data.type === 'radio') {
+      value = data.value
+    }
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   render () {
-    const { value } = this.state
     let fileValue = this.state.file || 'Select a file to upload'
     return (
       <div>
@@ -69,12 +93,27 @@ class Request extends Component {
 
         <Form>
           <Form.Group widths='equal'>
-            <Form.Input label='First name' placeholder='First name' />
-            <Form.Input label='Last name' placeholder='Last name' />
+            <Form.Input
+              label='First name'
+              placeholder='First name'
+              value={this.state.firstName}
+              onChange={this.handleInputChange}
+              name='firstName'
+            />
+            <Form.Input
+              label='Last name'
+              placeholder='Last name'
+              value={this.state.lastName}
+              onChange={this.handleInputChange}
+              name='lastName'
+            />
             <Form.Select
+              value={this.state.gender}
               label='Gender'
               options={options}
               placeholder='Gender'
+              name='gender'
+              onChange={this.handleInputChange}
             />
           </Form.Group>
 
@@ -84,42 +123,49 @@ class Request extends Component {
               <Form.Radio
                 label='Small'
                 value='sm'
-                checked={value === 'sm'}
-                onChange={this.handleChange}
+                checked={this.state.size === 'sm'}
+                onChange={this.handleInputChange}
+                name='size'
               />
               <Form.Radio
                 label='Medium'
                 value='md'
-                checked={value === 'md'}
-                onChange={this.handleChange}
+                checked={this.state.size === 'md'}
+                onChange={this.handleInputChange}
+                name='size'
               />
               <Form.Radio
                 label='Large'
                 value='lg'
-                checked={value === 'lg'}
-                onChange={this.handleChange}
+                checked={this.state.size === 'lg'}
+                onChange={this.handleInputChange}
+                name='size'
               />
             </Form.Group>
             <Form.Field
               label='Date'
               control={DatePicker}
               dateFormat='Do MMM YYYY'
-              selected={this.state.startDate}
-              onChange={this.handleChange}
+              selected={this.state.date}
+              onChange={this.handleDateChange}
               placeholderText='Click to select a date'
               showYearDropdown
               dateFormatCalendar='MMMM'
               scrollableYearDropdown
               yearDropdownItemNumber={15}
+              value={this.state.date}
             />
-            <Form.Field>
-              <label>Related Files</label>
-              <input
-                type='text'
-                readOnly
-                value={fileValue}
-                onClick={this.handleFileInputClick}
-              />
+
+            <Form.Group>
+              <Form.Field>
+                <label>Related Files</label>
+                <input
+                  type='text'
+                  readOnly
+                  value={fileValue}
+                  onClick={this.handleFileInputClick}
+                />
+              </Form.Field>
               <Form.Field>
                 <input
                   id='upload'
@@ -131,14 +177,22 @@ class Request extends Component {
                   onChange={this.handleFilePath}
                 />
               </Form.Field>
-            </Form.Field>
+            </Form.Group>
           </Form.Group>
 
           <Form.TextArea
             label='About'
             placeholder='Tell us more about you...'
+            name='desc'
+            value={this.state.desc}
+            onChange={this.handleInputChange}
           />
-          <Form.Checkbox label='I agree to the Terms and Conditions' />
+          <Form.Checkbox
+            label='I agree to the Terms and Conditions'
+            name='accept'
+            checked={this.state.accept}
+            onChange={this.handleInputChange}
+          />
           <Form.Button>Submit</Form.Button>
         </Form>
       </div>
