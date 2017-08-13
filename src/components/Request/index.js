@@ -15,18 +15,15 @@ class Request extends Component {
       startDate: '',
       file: ''
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleFileInputClick = this.handleFileInputClick.bind(this)
   }
 
-  handleChange (date) {
+  handleChange = date => {
     this.setState({
       startDate: date
     })
   }
 
-  handleFileInputClick () {
-    // console.log(this.fileUpload)
+  handleFileInputClick = () => {
     this.fileUpload.click()
   }
 
