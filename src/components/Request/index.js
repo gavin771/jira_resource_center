@@ -12,7 +12,7 @@ class Request extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      file: '',
+      file: {},
       firstName: '',
       lastName: '',
       gender: '',
@@ -34,15 +34,15 @@ class Request extends Component {
   }
 
   handleFilePath = () => {
-    let file = document.getElementById('upload').files
-    console.log(file)
+    let file = this.fileUpload.files
+
     if (file.length === 0) {
       this.setState({
         file: null
       })
     } else {
       this.setState({
-        file: file[0].name
+        file: file[0]
       })
     }
   }
@@ -50,7 +50,6 @@ class Request extends Component {
   handleInputChange = (e, data) => {
     let value
     let name = data.name
-    console.log(data)
 
     if (data.type === 'checkbox') {
       value = data.checked
@@ -65,8 +64,21 @@ class Request extends Component {
     })
   }
 
+  handleFormData = e => {
+    e.preventDefault()
+    let data = new FormData()
+
+    for (const [key, value] of Object.entries(this.state)) {
+      data.append(key, value)
+    }
+
+    fetch('/uploads', { method: 'post', body: data }).then(res => {
+      console.log('done')
+    })
+  }
+
   render () {
-    let fileValue = this.state.file || 'Select a file to upload'
+    let fileValue = this.state.file.name || 'Select a file to upload'
     return (
       <div>
         <Header as='h1' dividing>
@@ -91,7 +103,7 @@ class Request extends Component {
           </p>
         </Segment>
 
-        <Form>
+        <Form onSubmit={this.handleFormData}>
           <Form.Group widths='equal'>
             <Form.Input
               label='First name'
