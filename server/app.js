@@ -1,21 +1,21 @@
 import express from 'express'
 import path from 'path'
 import formidable from 'formidable'
+import fs from 'fs'
 
 const app = express()
 
 app.use(express.static(path.join(__dirname, '../', 'build')))
 
-app.get('/*', (req, res) => {
-  console.log('any request')
-  console.log(path.join(__dirname, '../', 'build', 'index.html'))
-  res.sendFile(path.join(__dirname, '../', 'build', 'index.html'))
-})
-
-app.post('/upload', (req, res) => {
+app.post('/uploads', (req, res) => {
   var form = new formidable.IncomingForm()
 
+  if (!fs.existsSync(`${__dirname}/uploads`)) {
+    fs.mkdirSync(`${__dirname}/uploads`)
+  }
+
   form.parse(req)
+
   form.on('fileBegin', (name, file) => {
     file.path = path.join(`${__dirname}/uploads/${file.name}`)
   })
@@ -24,7 +24,11 @@ app.post('/upload', (req, res) => {
     console.log(`Uploaded file ${file.name}`)
   })
 
-  res.sendFile(`${__dirname}/index.html`)
+  res.status(200).json({ msg: 'Form successfully completed' })
+})
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'build', 'index.html'))
 })
 
 app.listen(3001)
