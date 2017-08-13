@@ -2,7 +2,7 @@
   "name": "qw-resource-center",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gavin771.github.io/qw_resource_center/",
+  "homepage": "https://gavin771.github.io/",
   "dependencies": {
     "express": "~4.15.4",
     "formidable": "~1.1.1",
