@@ -14,19 +14,21 @@
     "react-router-dom": "~4.1.2",
     "react-scripts": "1.0.10",
     "semantic-ui-css": "~2.2.12",
-    "semantic-ui-react": "~0.71.3"
+    "semantic-ui-react": "~0.71.3",
+    "sendgrid": "~5.2.1"
   },
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "start:dev": "concurrently \"yarn start:server-dev\" \"yarn build && yarn start:client\"",
+    "start": "npm-run-all -p start:client start:server-dev",
     "start:client": "react-scripts start",
     "start:server-dev": "nodemon --exec babel-node ./server/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test-without-watch": "CI=true npm test",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged && npm run test-without-watch"
+    "precommit": "lint-staged && npm run test-without-watch",
+    "lint": "prettier 'src/**/*.js' 'src/components/**/*.js' '*.js' --write --single-quote --no-semi && standard --fix"
   },
   "devDependencies": {
     "babel-eslint": "~7.2.3",
@@ -38,6 +40,7 @@
     "husky": "~0.14.3",
     "lint-staged": "~4.0.3",
     "nightwatch": "~0.9.16",
+    "npm-run-all": "~4.0.2",
     "prettier": "~1.5.3",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
@@ -59,7 +62,8 @@
       "beforeEach",
       "expect",
       "fetch",
-      "FormData"
+      "FormData",
+      "URL"
     ]
   }
 }
