@@ -57,22 +57,34 @@ app.post('/uploads', (req, res) => {
 
   /** If the form has any fields */
   form.on('field', (filed, value) => {})
-  res.header('Access-Control-Allow-Origin', CORS)
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
 
-  sg.API(request, function (error, response) {
-    if (error) {
-      console.log('Error response received')
-    }
-    console.log(response.statusCode)
-    console.log(response.body)
-    console.log(response.headers)
+  form.on('error', err => {
+    res.header('Access-Control-Allow-Origin', CORS)
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    )
+    console.log(err)
+    res.status(500).json({ msg: 'Error submitting form' })
   })
 
-  res.status(200).json({ msg: 'Form successfully completed' })
+  form.on('end', (name, file) => {
+    sg.API(request, function (error, response) {
+      if (error) {
+        console.log('Error response received')
+      }
+      console.log(response.statusCode)
+      console.log(response.body)
+      console.log(response.headers)
+    })
+
+    res.header('Access-Control-Allow-Origin', CORS)
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    )
+    res.status(200).json({ msg: 'Form successfully completed' })
+  })
 })
 
 app.get('/*', (req, res) => {
