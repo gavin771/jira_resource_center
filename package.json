@@ -15,7 +15,8 @@
     "react-scripts": "1.0.10",
     "semantic-ui-css": "~2.2.12",
     "semantic-ui-react": "~0.71.3",
-    "sendgrid": "~5.2.1"
+    "sendgrid": "~5.2.1",
+    "trello": "~0.8.0"
   },
   "scripts": {
     "predeploy": "yarn build",
