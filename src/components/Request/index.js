@@ -3,6 +3,9 @@ import { Header, Segment, Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import '../../../node_modules/react-datepicker/dist/react-datepicker.css'
 
+const PORT = process.env.SERVER_PORT || 3001
+const HOST = process.env.SERVER_HOST || window.location.host.split(':')[0]
+const UPLOAD_URL = `http://${HOST}:${PORT}/uploads`
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' }
@@ -72,7 +75,7 @@ class Request extends Component {
       data.append(key, value)
     }
 
-    fetch('/uploads', { method: 'post', body: data }).then(res => {
+    fetch(UPLOAD_URL, { method: 'post', body: data }).then(res => {
       console.log('done')
     })
   }

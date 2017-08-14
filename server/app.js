@@ -2,15 +2,16 @@ import express from 'express'
 import path from 'path'
 import formidable from 'formidable'
 import fs from 'fs'
-const helper = require('sendgrid').mail
+import * as trello from './trello'
 
 require('dotenv').config()
+const helper = require('sendgrid').mail
 
 /** App configuration */
 const SERVER_PORT = process.env.SERVER_PORT || 3001
 const PROTOCOL = process.env.PROTOCOL || 'http'
-const HOSTNAME = process.env.HOST || 'localhost'
-const CLIENT_PORT = process.env.PORT || 3000
+const HOSTNAME = process.env.HOSTNAME || 'localhost'
+const CLIENT_PORT = process.env.CLIENT_PORT || 3000
 const CORS =
   process.env.NODE_ENV === 'production'
     ? `${PROTOCOL}://${HOSTNAME}`
@@ -37,7 +38,13 @@ app.use(express.static(path.join(__dirname, '../', 'build')))
 
 app.post('/uploads', (req, res) => {
   const form = new formidable.IncomingForm()
+  let uploadedFile
 
+  res.header('Access-Control-Allow-Origin', CORS)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   /** Create the upload folder if it doesnt exist */
   if (!fs.existsSync(`${__dirname}/uploads`)) {
     fs.mkdirSync(`${__dirname}/uploads`)
@@ -53,37 +60,56 @@ app.post('/uploads', (req, res) => {
   /** If the form has any files */
   form.on('file', (name, file) => {
     console.log(`Uploaded file ${file.name}`)
+    uploadedFile = file
   })
 
   /** If the form has any fields */
   form.on('field', (filed, value) => {})
 
+  let error = false
   form.on('error', err => {
-    res.header('Access-Control-Allow-Origin', CORS)
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
+    error = true
+
     console.log(err)
-    res.status(500).json({ msg: 'Error submitting form' })
+    res.status(400).json({ success: false, msg: 'Error submitting form' })
   })
 
   form.on('end', (name, file) => {
-    sg.API(request, function (error, response) {
-      if (error) {
-        console.log('Error response received')
-      }
-      console.log(response.statusCode)
-      console.log(response.body)
-      console.log(response.headers)
-    })
+    if (error) return
 
-    res.header('Access-Control-Allow-Origin', CORS)
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
-    res.status(200).json({ msg: 'Form successfully completed' })
+    if (process.env.ENABLE_SEND_EMAILS === 'true') {
+      console.log('sending emails')
+      sg.API(request, function (error, response) {
+        if (error) {
+          console.log('Error response received')
+        }
+      })
+    }
+
+    if (process.env.ENABLE_TRELLO === 'true') {
+      trello
+        .createCard({ title: 'card title', description: 'description' })
+        .then(card => {
+          console.log(uploadedFile)
+
+          if (uploadedFile) {
+            trello
+              .addAttachment(card.id, uploadedFile)
+              .then(card => {
+                console.log(card)
+              })
+              .catch(err => {
+                console.log('attach file error')
+                console.log(err)
+              })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
+    res.status(200).json({ success: true, msg: 'Form successfully completed' })
   })
 })
 
