@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, '../', 'build')))
 
 app.post('/uploads', (req, res) => {
   const form = new formidable.IncomingForm()
-  let uploadedFile
+  let uploadedFile = {}
 
   res.header('Access-Control-Allow-Origin', CORS)
   res.header(
@@ -55,12 +55,13 @@ app.post('/uploads', (req, res) => {
 
   form.on('fileBegin', (name, file) => {
     file.path = path.join(`${__dirname}/uploads/${file.name}`)
+    uploadedFile.path = file.path
   })
 
   /** If the form has any files */
   form.on('file', (name, file) => {
     console.log(`Uploaded file ${file.name}`)
-    uploadedFile = file
+    uploadedFile.file = file
   })
 
   /** If the form has any fields */
@@ -90,8 +91,6 @@ app.post('/uploads', (req, res) => {
       trello
         .createCard({ title: 'card title', description: 'description' })
         .then(card => {
-          console.log(uploadedFile)
-
           if (uploadedFile) {
             trello
               .addAttachment(card.id, uploadedFile)
