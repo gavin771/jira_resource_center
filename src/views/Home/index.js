@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Header, Card } from 'semantic-ui-react'
-import DashboardCard from '../DashboardCard'
+import DashboardCard from '../../components/DashboardCard'
 import placeholderImage from '../../image.png'
 
 const cards = [

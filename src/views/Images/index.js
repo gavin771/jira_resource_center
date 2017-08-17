@@ -68,11 +68,12 @@ class Images extends Component {
           .filter(post => activeTab === 'all' || activeTab === post.type)
           .map((post, i) =>
             <div key={i}>
-              <img src={post.image} />
+              <img alt={post.header} src={post.image} />
             </div>
           )}
       </Masonry>
     )
+
     return (
       <div>
         <Header as='h1' dividing>

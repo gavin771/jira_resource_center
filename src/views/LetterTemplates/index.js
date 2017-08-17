@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Header, Card, Segment } from 'semantic-ui-react'
-import DashboardCard from '../DashboardCard'
+import DashboardCard from '../../components/DashboardCard'
 
 const letters = [
   {
