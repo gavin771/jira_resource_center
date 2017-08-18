@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Grid, List } from 'semantic-ui-react'
 import Masonry from 'react-masonry-component'
+import ImageCard from '../../components/ImageCard'
 
 const images = [
   {
@@ -62,61 +63,39 @@ class Images extends Component {
     const { activeTab } = this.state
     const tabs = { all: 'All', flyers: 'Flyers', logos: 'Logos' }
 
-    const masonryComp = (
-      <Masonry>
-        {this.state.data
-          .filter(post => activeTab === 'all' || activeTab === post.type)
-          .map((post, i) =>
-            <div key={i}>
-              <img alt={post.header} src={post.image} />
-            </div>
-          )}
-      </Masonry>
-    )
-
     return (
       <div>
         <Header as='h1' dividing>
           Images
         </Header>
-        <div>
-          <div>
-            <div>
-              <ul>
-                {Object.keys(tabs).map((tabKey, i) =>
-                  <li key={tabKey + '-' + i}>
-                    <a
-                      key={tabKey}
-                      href={'#' + tabKey}
-                      className={tabKey === activeTab && 'active'}
-                      onClick={() => this.setState({ activeTab: tabKey })}
-                    >
-                      {tabs[tabKey]}
-                    </a>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </div>
-        </div>
-        {Object.keys(tabs).map(tabKey =>
-          <div className='row' id={tabKey} key={tabKey}>
-            {activeTab === tabKey && masonryComp}
-          </div>
-        )}
-        {/* <Card.Group itemsPerRow={2}>
-          {images.map((f, i) => {
-            return (
-              <DashboardCard
-                header={f.header}
-                image={f.image}
-                details={f.details}
-                key={i}
-                displayExtra
-              />
-            )
-          })}
-        </Card.Group> */}
+
+        {/* Container for logo type links  */}
+        <Grid centered>
+          <Grid.Column textAlign='center'>
+            <List bulleted horizontal>
+              {Object.keys(tabs).map((tabKey, i) =>
+                <List.Item key={tabKey + '-' + i}>
+                  <a
+                    key={tabKey}
+                    href={'#' + tabKey}
+                    className={tabKey === activeTab && 'active'}
+                    onClick={() => this.setState({ activeTab: tabKey })}
+                  >
+                    {tabs[tabKey]}
+                  </a>
+                </List.Item>
+              )}
+            </List>
+          </Grid.Column>
+        </Grid>
+
+        <Masonry className={'ui four cards'}>
+          {this.state.data
+            .filter(post => activeTab === 'all' || activeTab === post.type)
+            .map((post, i) =>
+              <ImageCard key={i} alt={post.header} link={post.image} />
+            )}
+        </Masonry>
       </div>
     )
   }
