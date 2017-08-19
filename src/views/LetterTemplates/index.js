@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Header, Card, Segment } from 'semantic-ui-react'
 import DashboardCard from '../../components/DashboardCard'
+import { Helmet } from 'react-helmet'
 
 const letters = [
   {
@@ -21,6 +22,11 @@ class LetterTemplates extends Component {
   render () {
     return (
       <div>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Letter Templates - Resource Center</title>
+          <link rel='canonical' href='http://mysite.com/example' />
+        </Helmet>
         <Header as='h1' dividing>
           Letter Templates
         </Header>

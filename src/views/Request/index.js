@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Header, Segment, Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import '../../../node_modules/react-datepicker/dist/react-datepicker.css'
+import { Helmet } from 'react-helmet'
 
 const PORT = process.env.SERVER_PORT || 3001
 const HOST = process.env.SERVER_HOST || window.location.host.split(':')[0]
@@ -84,6 +85,11 @@ class Request extends Component {
     let fileValue = this.state.file.name || 'Select a file to upload'
     return (
       <div>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Requests - Resource Center</title>
+          <link rel='canonical' href='http://mysite.com/example' />
+        </Helmet>
         <Header as='h1' dividing>
           Submit a Request
         </Header>

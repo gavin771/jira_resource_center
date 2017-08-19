@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Header, Grid, List } from 'semantic-ui-react'
 import Masonry from 'react-masonry-component'
 import ImageCard from '../../components/ImageCard'
+import { Helmet } from 'react-helmet'
 
 const images = [
   {
@@ -65,6 +66,12 @@ class Images extends Component {
 
     return (
       <div>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Images - Resource Center</title>
+          <link rel='canonical' href='http://mysite.com/example' />
+        </Helmet>
+
         <Header as='h1' dividing>
           Images
         </Header>

@@ -6,12 +6,9 @@ const ImageCard = props => {
     <Card raised href='#'>
       <Image alt={props.alt} src={props.link} />
       <Card.Content extra>
-        <div className='ui two buttons'>
+        <div className='centered ui one buttons'>
           <Button basic color='green'>
-            PNG
-          </Button>
-          <Button basic color='blue'>
-            PSD
+            Download PNG
           </Button>
         </div>
       </Card.Content>

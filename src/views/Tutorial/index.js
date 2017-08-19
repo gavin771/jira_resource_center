@@ -1,9 +1,15 @@
 import React from 'react'
 import { Header, Segment, Embed } from 'semantic-ui-react'
+import { Helmet } from 'react-helmet'
 
 const Tutorial = props => {
   return (
     <div>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Tutorial - Resource Center</title>
+        <link rel='canonical' href='http://mysite.com/example' />
+      </Helmet>
       <Header as='h1' dividing>
         Tutorial
       </Header>

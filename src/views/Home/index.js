@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Header, Card } from 'semantic-ui-react'
 import DashboardCard from '../../components/DashboardCard'
 import placeholderImage from '../../image.png'
+import { Helmet } from 'react-helmet'
 
 const cards = [
   {
@@ -46,6 +47,11 @@ class Home extends Component {
   render () {
     return (
       <div>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Home - Resource Center</title>
+          <link rel='canonical' href='http://mysite.com/example' />
+        </Helmet>
         <Header as='h1' dividing>
           Control Centre
         </Header>

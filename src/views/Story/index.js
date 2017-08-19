@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { Header, Segment, Form } from 'semantic-ui-react'
+import { Helmet } from 'react-helmet'
 
 class Story extends Component {
   render () {
     return (
       <div>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Stories - Resource Center</title>
+          <link rel='canonical' href='http://mysite.com/example' />
+        </Helmet>
         <Header as='h1' dividing>
           Share a Story
         </Header>
