@@ -3,7 +3,7 @@ import { Card, Image, Button } from 'semantic-ui-react'
 
 const ImageCard = props => {
   return (
-    <Card raised href='#'>
+    <Card raised>
       <Image alt={props.alt} src={props.link} />
       <Card.Content extra className='ui center aligned '>
         <div className='ui one buttons'>
