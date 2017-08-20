@@ -3,18 +3,18 @@ import { Card, Image, Divider, Button } from 'semantic-ui-react'
 
 const DashboardCard = props => {
   return (
-    <Card raised href={this.props.link}>
+    <Card raised href={props.link}>
       <Card.Content>
-        <Image size='small' src={this.props.image} centered />
+        <Image size='small' src={props.image} centered />
         <Divider />
         <Card.Header className='center aligned'>
-          {this.props.header}
+          {props.header}
         </Card.Header>
         <Card.Description>
-          {this.props.details}
+          {props.details}
         </Card.Description>
       </Card.Content>
-      {this.props.displayExtra &&
+      {props.displayExtra &&
         <Card.Content extra>
           <div className='ui two buttons'>
             <Button basic color='green'>
