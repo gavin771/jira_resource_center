@@ -6,7 +6,6 @@ import Projects from './views/Projects'
 import Tasks from './views/Tasks'
 import Images from './views/Images'
 import LetterTemplates from './views/LetterTemplates'
-import Story from './views/Story'
 import Request from './views/Request'
 import Tutorial from './views/Tutorial'
 import NotFound from './views/NotFound'
@@ -27,7 +26,6 @@ const App = () => {
             <Route exact path='/tasks' component={Tasks} />
             <Route exact path='/images' component={Images} />
             <Route exact path='/letter-templates' component={LetterTemplates} />
-            <Route exact path='/share-story' component={Story} />
             <Route exact path='/submit-request' component={Request} />
             <Route exact path='/tutorial' component={Tutorial} />
             <Route component={NotFound} />
