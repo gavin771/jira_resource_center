@@ -9,37 +9,43 @@ const cards = [
     link: '/',
     details: 'Some details for title 1',
     image: placeholderImage,
-    header: 'Title 1'
+    header: 'Title 1',
+    iconName: 'home'
   },
   {
     link: '/',
     details: 'Some details for title 2',
     image: placeholderImage,
-    header: 'Title 2'
+    header: 'Title 2',
+    iconName: 'tasks'
   },
   {
     link: '/',
     details: 'Some details for title 3',
     image: placeholderImage,
-    header: 'Title 3'
+    header: 'Title 3',
+    iconName: 'image'
   },
   {
     link: '/',
     details: 'Some details for title 4',
     image: placeholderImage,
-    header: 'Title 4'
+    header: 'Title 4',
+    iconName: 'comment'
   },
   {
     link: '/',
     details: 'Some details for title 5',
     image: placeholderImage,
-    header: 'Title 5'
+    header: 'Title 5',
+    iconName: 'code'
   },
   {
     link: '/',
     details: 'Some details for title 6',
     image: placeholderImage,
-    header: 'Title 6'
+    header: 'Title 6',
+    iconName: 'settings'
   }
 ]
 
@@ -63,6 +69,7 @@ class Home extends Component {
                 header={c.header}
                 image={c.image}
                 details={c.details}
+                iconName={c.iconName}
                 key={i}
               />
             )

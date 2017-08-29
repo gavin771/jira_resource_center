@@ -1,11 +1,18 @@
 import React from 'react'
-import { Card, Image, Divider, Button } from 'semantic-ui-react'
+import { Card, Divider, Button, Icon } from 'semantic-ui-react'
 
 const DashboardCard = props => {
   return (
     <Card raised href={props.link}>
       <Card.Content>
-        <Image size='small' src={props.image} centered />
+        <div style={{ textAlign: 'center' }}>
+          {' '}<Icon
+            name={props.iconName}
+            size='huge'
+            circular
+            color='teal'
+          />{' '}
+        </div>
         <Divider />
         <Card.Header className='center aligned'>
           {props.header}
